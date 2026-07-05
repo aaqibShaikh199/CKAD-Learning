@@ -1,5 +1,16 @@
-#DESCRIPTION:-
-#The ReplicaSet adopted the existing standalone Pods because they matched its selector. Later, the ReplicationController could not adopt those Pods because they were already owned by the ReplicaSet, so it created new Pods to maintain its desired replica count.
+# DESCRIPTION:
+# First, I created two standalone Pods with the label `app: nginx`.
+# These Pods did not have any ownerReferences.
+
+# When I created the ReplicaSet, it found the existing Pods that matched
+# its selector, adopted them by adding ownerReferences, and did not create
+# any new Pods because the desired replica count was already satisfied.
+
+# Later, I created a ReplicationController with the same selector.
+# Since the existing Pods were already owned by the ReplicaSet, the
+# ReplicationController did not adopt them and created its own Pods
+# to satisfy `replicas: 2`.
+
 
 ###pod1.yaml 
 apiVersion: v1
