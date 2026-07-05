@@ -1,3 +1,6 @@
+#DESCRIPTION:-
+#The ReplicaSet adopted the existing standalone Pods because they matched its selector. Later, the ReplicationController could not adopt those Pods because they were already owned by the ReplicaSet, so it created new Pods to maintain its desired replica count.
+
 ###pod1.yaml 
 apiVersion: v1
 kind: Pod
