@@ -1,0 +1,63 @@
+###pod1.yaml 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod1
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: pod1
+    image: nginx
+
+###pod2.yaml 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod2
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: pod1
+    image: nginx
+
+###replicaset.yaml 
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+     app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: replicaset
+        image: nginx
+
+###replication-controller.yaml 
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: replication-controller
+spec:
+  replicas: 2
+  selector:
+    app: nginx
+  template:
+    metadata:
+      name: replication-controller
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: replication-controller
+        image: nginx
